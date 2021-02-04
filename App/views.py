@@ -2,13 +2,13 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib import messages
-from .models import Place, Comment, Image
+from .models import Place as PlaceTable, Comment, Image
 from .forms import PlaceForm
 import requests
 
 
 def Home(request):
-	return render(request, 'pages/home.html', {'places' : [1, 2, 3, 4, 5, 6, 7]})
+	return render(request, 'pages/home.html', {'places': PlaceTable.objects.all()})
 
 def NewPlace(request):
 	if(request.user.is_authenticated):
@@ -24,7 +24,6 @@ def Place(request):
 		imagesList = request.FILES.getlist('images')
 		if form.is_valid():
 			place = form.save(commit=False)
-			place.images = None
 			place.author = request.user
 			gadd = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + "+".join(place.address.split()) + '&key=AIzaSyBiAJZoPr2LmHh9CRquaUYqIaZuvx4IxIE')
 			place.googleAddress = gadd.json()['results'][0]['formatted_address']

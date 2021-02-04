@@ -13,11 +13,11 @@
 	<div class="row text-center" style="display:flex; flex-wrap:wrap">
 		{% for place in places %}
 			<div class="col-md-3 col-sm-6 pb-3">
-				<a href="https://www.google.com" class="card">
-					<img class="card-img-top" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAALVBMVEUAAAD///++vr6amprAwMCurq6Hh4eKioqYmJhpaWlRUVGCgoLs7Ozd3d3KyspXgMfAAAAD9ElEQVR4nO3cCXLbMBSDYcny0rRN73/cVnVVLxIlLgAJZvBfgPnGJDOT+HEYnHPOOeecc84555xzzjnnnHPOOec66ccXWSPYZTzR1ziNF/oawS7jOJ7Ja5z/rNGMOAPZxPPfNRoR70Au8fxvjSbEBTgSz+Lp/xoNiA8gj3h6WqM68RnIIp5e1qhMfAVyiKe3NaoS34GM6+a8WqMicQ3EE9fAisQtIHqjvm/RqsRtIJa4DaxEDAGRxBCwCjEMxBHDwArEPSCKuAekE/eBmBt16xatRjwCIohHQCrxGFi+Ufe3KJkYAywlxgBpxDhgGTEOSCLGAkuIsUAKMR6Yf90cXzJEYgowl5gChBPTgHkbNX6LEogfiYvnEFOB4/iBJE50YjpwQgL5xOZANlEAmEOMv1HTbtG5b3ggk5gOJHyCecS4jSqxRZlEISCHKAVkEMWAeKIcEH2jytyiLKIkELlRBbcoligLRBGFgRiiNBBx3YheMjiiPLB0o4pv0XJiF8ASYifAfGI3wFxiR8C8G7WDW7SM+LMvYA6xMyCf2BzIJlL+LpoakyjwCc7xiCJAHlEGyCIKATlEKSCDKAbEE+WAaKIgEEuU+EW/DkeU/ATnUERZIIooDMQQpYEIojiwnCgPLCV2ACwjdgEsIXYCzCd2A8wldgTMI3YFHIbPZOBn6x85rfQ/3fNfZ4CW/s+XOf4bG7DygB0Rc4HdEPOBnRBLgF0Qc27R5+Rv1FKgPLFsi96T3qgIoDQRAxQmooCyxPJL5pHkdYMEShJxW1SUiAbKnUU8UIzIAEoROUAhIvYWfU7kuuEBRYisLXpPYKNygQJENrA5MR34qy9izpfS+Q9QAMv7Ujrz6QIJYEfE/LmJTjZqyWBIF8SyyZcOiKWjPfLE8tEe8esGMbskTcRMnwlvVNR4nSwRNz8oSkwHhr/SLEnEToAKEtEToHI3Kn7EVYzIGFKW2qicKWwhImvMXIbIm6MXITIfCpC4brgPBQgQ2S8hNCfy37JofBbT3xFO/0pzOhH6jvCNDkwnXpHAYbjSgalEMDCNmPut+xQiHJiyUfPHCuKJBGA8sWRuIpZ4g6leiiOWDYbEEUnAOGLp5EsMkQaMuW7Kx8yPiZQzuHRERMwuHRGpwCMiZjhrn0gG7p9F1PTZHpF4BpfCRNx4XZhYARgmIucHQ8QqwBAROyC5TawE3L5u0BOgW0T6JfNoTcSPuK6JFYFrImOG951YFfh+FjlDyq/Eamdw6UYHvhKrA5+JvDHzqSXwcRaZbzotxMpncOlK/gTnppbAO5H9EsLUEjifRf5TD1ObM7j0/Yus4ZxzzjnnnHPOOeecc84555xzzjkH6Td81DIWa3SeBAAAAABJRU5ErkJggg==" alt="Card image cap">
+				<a href="/{{ place.id }}" class="card">
+					<img class="card-img-top" src="/media/{{ place.images }}">
 					<div class="card-body">
-						<h5 class="card-title" style="color:black">Card title</h5>
-						<p class="card-text" style="color:black">Some quick ent.</p>
+						<h5 class="card-title" style="color:black">{{ place.name }}</h5>
+						<p class="card-text" style="color:black">{{ place.description }}</p>
 					</div>
 				</a>			
 			</div>		
