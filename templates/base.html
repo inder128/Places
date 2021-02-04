@@ -3,22 +3,40 @@
 <html> 
 	<head>  
 		<title>App</title>  
-		<link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
-		{% block css %}  
-		{% endblock %}  
-		{% block style %}  
-		{% endblock %} 
-	</head> 
-	<body>  
+		<link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> 
+		{% block css %}
+		{% endblock %}
+		{% block style %}
+		{% endblock %}
+	</head>
+	<body>
 		
 		<nav class="navbar navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Places</a>
+			<a class="navbar-brand" href="/">Places</a>
 			<div class="d-flex flex-row-reverse">
-				<a class="nav-link" href="#" style="color : white;">LOG OUT</a>
-				<a class="nav-link" href="#" style="color : white;">LOG IN</a>
-				<a class="nav-link" href="#" style="color : white;">REGISTER</a>
+				{% if user.is_authenticated %}
+					<a class="nav-link" href="/logout" style="color : white;">LOG OUT</a>
+					<a class="nav-link" class="" style="color : white;">Signed In As <i>{{ user.username }}</i></a>
+				{% else %}
+					<a class="nav-link" href="/login" style="color : white;">LOG IN</a>
+					<a class="nav-link" href="/register" style="color : white;">REGISTER</a>
+				{% endif %}
 			</div>
 		</nav>
+
+		{% for message in messages %}
+			{% if message.tags == 'error' %}
+				<div class="alert alert-danger mb-0">
+					{{ message }}
+				</div>
+			{% endif %}
+			{% if message.tags == 'success' %}
+				<div class="alert alert-success mb-0">
+					{{ message }}
+				</div>
+			{% endif %}
+		{% endfor %}
 
 			
 		{% block content %}  
