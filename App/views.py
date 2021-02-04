@@ -21,14 +21,17 @@ def Place(request):
 	# post a place
 	if request.method == "POST":
 		form = PlaceForm(request.POST, request.FILES)
+		imagesList = request.FILES.getlist('images')
 		if form.is_valid():
 			place = form.save(commit=False)
+			place.images = None
 			place.author = request.user
 			gadd = requests.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + "+".join(place.address.split()) + '&key=AIzaSyBiAJZoPr2LmHh9CRquaUYqIaZuvx4IxIE')
 			place.googleAddress = gadd.json()['results'][0]['formatted_address']
 			place.lat = gadd.json()['results'][0]['geometry']['location']['lat']
 			place.lng = gadd.json()['results'][0]['geometry']['location']['lng']
 			place.save()
+			for image in imagesList:
+				Image(place = place, image = image).save()
 			messages.success(request, "Successfuly added Place!!!")
 		return redirect('/')
-
