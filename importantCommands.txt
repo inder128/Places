@@ -2,8 +2,9 @@ initial commends :-
 cd Documents
 source PlaceAppPythonEnv/bin/activate
 cd Places
-python manage.py runserver
+python manage.py runsslserver
 
+https://localhost:8000
 
 to start project :-
 django-admin startproject <ProjectName>
