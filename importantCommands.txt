@@ -1,0 +1,18 @@
+initial commends :-
+cd Documents
+source PlaceAppPythonEnv/bin/activate
+cd Places
+python manage.py runserver
+
+
+to start project :-
+django-admin startproject <ProjectName>
+
+to start app :-
+python manage.py startapp <AppName>
+
+to create and run virtual environment :-
+python3 -m pip install --user virtualenv
+python3 -m venv <EnvironmentName>
+source <EnvironmentName>/bin/activate
+deactivate
