@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container" style="width:50%">
 		<h1 class="text-center mt-5">ADD A NEW PLACE</h1>
-		<form action="/place/" id="placeForm" method="POST" enctype="multipart/form-data">{% csrf_token %}
+		<form action="/new/" id="placeForm" method="POST" enctype="multipart/form-data">{% csrf_token %}
 			{% for field in form %}
 				{{field}}
 			{% endfor %}

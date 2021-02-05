@@ -11,14 +11,12 @@ def Home(request):
 	return render(request, 'pages/home.html', {'places': PlaceTable.objects.all()})
 
 def NewPlace(request):
-	if(request.user.is_authenticated):
-		return render(request, 'pages/placeForm.html', {'form': PlaceForm()})
-	else:
-		messages.error(request, "Please login first!!!")
-		return redirect('/login')
-
-def Place(request):
-	# post a place
+	if request.method == "GET":
+		if(request.user.is_authenticated):
+			return render(request, 'pages/placeForm.html', {'form': PlaceForm()})
+		else:
+			messages.error(request, "Please login first!!!")
+			return redirect('/login')
 	if request.method == "POST":
 		form = PlaceForm(request.POST, request.FILES)
 		imagesList = request.FILES.getlist('images')
