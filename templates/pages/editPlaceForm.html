@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="width:50%">
+		<h1 class="text-center mt-5">EDIT PLACE</h1>
+		<form action="/{{ place.id }}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+			{% for field in form %}
+				{{field}}
+			{% endfor %}
+			<button type="submit" class="btn btn-lg btn-dark btn-default btn-block">Submit!</button>
+		</form>		
+</div>
+
+{% block js %}
+<script>
+	$("#id_name").val("{{place.name}}");
+	$("#id_description").val("{{place.description}}");
+	$("#id_address").val("{{place.address}}");
+</script>
+{% endblock %}
+{% endblock %}

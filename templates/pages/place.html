@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+	<div class="card mb-3 mt-5">
+		<img src="/media/{{ images.0.image }}" class="card-img-top">
+		<div class="card-body">
+			<h5 class="card-title">{{ place.name }}</h5>
+			<p class="card-text">{{ place.description }}</p>
+			<p class="card-text float-left"><em>Submitted By : </em> {{ place.author.username }}</p>
+			{% if user.id == place.author.id %}
+				<a class="btn btn-xs btn-warning float-right" href="/{{ place.id }}/edit" >Edit</a>
+				<form class="delete-form float-right mr-3" action="/{{ place.id }}?method=DELETE" method="POST" >{% csrf_token %}								
+					<button class="btn btn-xs btn-danger">DELETE</button>
+				</form>
+			{% endif %}
+		</div>
+	</div>
+
+	<form class="form-inline mb-3" action="/{{ place.id }}/addcomment" method="POST"> {% csrf_token %}
+		<input type="text" class="form-control col-11 mr-2" placeholder="Type Comment" name="text">
+		<button type="submit" class="btn btn-dark">Submit</button>
+	</form>
+
+	<div class="card p-3 mb-3">
+		<div class="row">
+			{% for comment in place.comments.all %}
+					<div class="col-11">
+						<strong>{{ comment.author.username }}</strong>
+						<p>{{ comment.text }}</p>
+					</div>
+					{% if user.id == comment.author.id %}
+						<form class="col3" action="/{{ place.id }}/deletecomment/{{ comment.id }}?method=DELETE" method="POST"> {% csrf_token %}
+							<button class="btn btn-xs btn-danger">Delete</button>
+						</form>
+					{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+
+	<div id="map">
+	</div>
+</div>
+{% endblock %}
+
+{% block css %}
+<style>
+	#map {
+	height: 500px;
+	width: 500px;
+	}
+	html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	}
+</style>
+{% endblock %}
+
+{% block js %}
+	<script>
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat:parseFloat('{{place.lat}}') , lng:parseFloat('{{place.lng}}')},
+		zoom: 14
+		});
+	}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiAJZoPr2LmHh9CRquaUYqIaZuvx4IxIE&callback=initMap"
+	async defer></script>
+{% endblock %}
