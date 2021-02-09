@@ -17,3 +17,7 @@ python3 -m pip install --user virtualenv
 python3 -m venv <EnvironmentName>
 source <EnvironmentName>/bin/activate
 deactivate
+
+
+GitHub link for python environment of this project :- 
+https://github.com/inder128/extras/tree/master/PlaceAppPythonEnv
